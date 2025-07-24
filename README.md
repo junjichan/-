@@ -1,7 +1,5 @@
 # 中文地址文本相关性分析：基于类别不平衡的BERT建模与应用
 
-## 🔗 开源代码
-相关代码已开源在：[GitHub项目链接]
 
 ## 1. 项目背景
 地址文本相关性任务在现实世界中具有广泛的应用场景：
@@ -30,6 +28,7 @@
 **输出**：完全匹配/部分匹配/不匹配  
 
 **示例**：
+
 json
 
 {
@@ -110,7 +109,7 @@ json
 
 
 公式：  
-$$ L=-\sum_{c=1}^c y_c\log\left(p_c\right) $$
+$$ L = -\sum_{c=1}^{C} y_c \log(p_c) $$
 
 ### 6.2 类别不平衡改进
 #### CEFL损失
@@ -120,7 +119,7 @@ $$ L=-\sum_{c=1}^c y_c\log\left(p_c\right) $$
 
 
 公式：  
-$$ CEF L\left(p_t\right)=-\left(1-p_t\right)\log\left(p_t\right)-p_t\left(1-p_t\right)^\gamma\log\left(p_t\right) $$
+$$ \text{CEFL}(p_t) = -(1-p_t)\log(p_t) - p_t(1-p_t)^\gamma\log(p_t) $$
 
 #### CEFL2损失
 
@@ -141,7 +140,7 @@ $$ CEF L\left(p_t\right)=-\left(1-p_t\right)\log\left(p_t\right)-p_t\left(1-p_t\
 [](@replace=8)
 
 
-| 损失函数 | Val准确率 | Val宏F1 |
+| 损失函数 | Val Accuracy | Val F1 |
 |----------|-----------|---------|
 | Cross Entropy | 82.06% | 77.98% |
 | CEFL | 81.32% | 77.20% |
@@ -171,7 +170,7 @@ $$ CEF L\left(p_t\right)=-\left(1-p_t\right)\log\left(p_t\right)-p_t\left(1-p_t\
 [](@replace=11)
 
 
-| 方案 | Val准确率 | Val宏F1 |
+| 方案 | accuracy | F1 |
 |------|-----------|---------|
 | 无增强 | 82.06% | 77.98% |
 | 增强方案 | 81.37% | 76.89% |
@@ -182,12 +181,6 @@ $$ CEF L\left(p_t\right)=-\left(1-p_t\right)\log\left(p_t\right)-p_t\left(1-p_t\
 2. **数据增强需谨慎**：增强方案导致性能下降（↓1.09% F1）
 3. **过拟合是主要挑战**：所有方案呈现"先升后降"验证曲线
 
-### 性能对比
-| 方案 | 验证准确率 | 宏F1 |
-|------|------------|------|
-| **最佳方案** | 82.06% | 77.98% |
-| 数据增强 | 81.37% | 76.89% |
-| CEFL | 81.32% | 77.20% |
 
 ### 未来方向
 1. 开发地址域特定增强方法

@@ -23,7 +23,9 @@ def parse_args():
     parser.add_argument('--NCE_function',type=str,default=False,help='NCE函数开启')
 
     parser.add_argument('--augment', type=str, default=True,choices=[False,True],help='数据增强开启/关闭')
-    
+    # 评估模式参数
+    parser.add_argument('--mode', type=str, default='batch', choices=['single', 'batch'], 
+                       help='评估模式: single-单样本推理, batch-批量评估')
     args = parser.parse_args()
     return args
 
